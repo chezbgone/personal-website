@@ -12,4 +12,5 @@ body {
   color: transparent;
   background-size: cover;
   background-clip: text;
+  -webkit-background-clip: text;
 }
