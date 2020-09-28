@@ -1,4 +1,4 @@
-var metadata = { title: "I’m Waiting for the Man", author: "Wayne Zhao", date: "2020",
+var metadata = { title: "Unwillingness", author: "Wayne Zhao", date: "2020",
 instructions: "Click below or add your own parameters to the URL to change the “spin” and to create variation in the narrative discourse. You have to use the official names of “actors” for narrator and narratee, which can be found by looking at the code. Examples:",
 examples: [
 "narrator=huashi,speaking=after",
