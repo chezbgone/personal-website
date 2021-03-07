@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 body {
   max-width: 32rem;
   margin: 0 auto;
@@ -13,4 +11,8 @@ body {
   background-size: cover;
   background-clip: text;
   -webkit-background-clip: text;
+}
+
+.masthead h1 {
+  display: inline;
 }
