@@ -5,7 +5,12 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+header {
+  margin: 0 -1em;
+}
+
 .masthead {
+  padding: 0 1em;
   background-image: url("masthead.jpg");
   color: transparent;
   background-size: cover;
