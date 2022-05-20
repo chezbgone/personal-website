@@ -1,0 +1,7 @@
+dist
+dist-*
+
+*.o
+*.hi
+*.hie
+
