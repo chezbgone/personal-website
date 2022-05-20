@@ -1,0 +1,33 @@
+name: s3-sync
+
+on:
+  push:
+    branches: [ main ]
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: haskell/actions/setup@v2
+        with:
+          ghc-version: '8.10'
+          cabal-version: '3.6.2.0'
+      
+      # caching strategy from https://markkarpov.com/post/github-actions-for-haskell-ci.html
+      - run: cabal update
+      - run: cabal freeze
+      
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cabal/store
+            dist-newstyle
+          key: ${{ runner.os }}-${{ hashFiles('cabal.project.freeze') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      
+      - run: cabal build
