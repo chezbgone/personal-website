@@ -33,5 +33,5 @@ header {
 footer {
   text-align: right;
   font-size: smaller;
-  color: #888888;
+  filter: opacity(50%);
 }

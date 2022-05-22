@@ -5,3 +5,5 @@ dist-*
 *.hi
 *.hie
 
+_cache
+_site

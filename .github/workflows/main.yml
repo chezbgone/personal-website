@@ -12,22 +12,41 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - uses: haskell/actions/setup@v2
+      - name: Setup Haskell
+        uses: haskell/actions/setup@v2
         with:
           ghc-version: '8.10'
           cabal-version: '3.6.2.0'
       
-      # caching strategy from https://markkarpov.com/post/github-actions-for-haskell-ci.html
-      - run: cabal update
-      - run: cabal freeze
+      # caching strategy from
+      # https://markkarpov.com/post/github-actions-for-haskell-ci.html
+      - name: Freeze
+        run: |
+          cabal update
+          cabal freeze
       
-      - uses: actions/cache@v3
+      - name: Cache ~/.cabal/store
+        uses: actions/cache@v3
         with:
           path: |
             ~/.cabal/store
-            dist-newstyle
-          key: ${{ runner.os }}-${{ hashFiles('cabal.project.freeze') }}
+          key: cabal-store-${{ runner.os }}-${{ hashFiles('cabal.project.freeze') }}
           restore-keys: |
-            ${{ runner.os }}-
+            cabal-store-${{ runner.os }}-
       
-      - run: cabal build
+      - name: Build dependencies
+        run: cabal build --only-dependencies
+      - name: Build site
+        run: |
+          cabal build
+          cabal run site build
+
+      - name: Move static site files to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SOURCE_DIR: '_site'
