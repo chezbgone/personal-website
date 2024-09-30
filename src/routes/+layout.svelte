@@ -39,7 +39,7 @@
 
   .masthead {
     padding-left: var(--masthead-hbuffer);
-    background-image: url("./assets/masthead.jpg");
+    background-image: url("/assets/masthead.jpg");
     color: transparent;
     background-size: cover;
     background-clip: text;
