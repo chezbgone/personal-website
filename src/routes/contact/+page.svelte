@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>Jason Chen - Contact</title>
+</svelte:head>
+
 <h2>Contact</h2>
 <div class="contact">
   <span>Email: 17jchen [at] gmail.com</span>
