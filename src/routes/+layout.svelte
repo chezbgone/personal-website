@@ -1,11 +1,12 @@
 <script lang="ts">
   import "@fontsource/noto-sans";
   import "../app.css";
+  import { resolve } from "$app/paths";
 
   const tabs = [
     { title: "Home", href: "/" },
     { title: "Contact", href: "/contact" },
-  ];
+  ] as const;
 </script>
 
 <header>
@@ -13,9 +14,9 @@
     <h1>Jason Chen</h1>
   </div>
   <nav>
-    {#each tabs as tab}
+    {#each tabs as tab (tab.href)}
       <span>
-        <a href={tab.href}>{tab.title}</a>
+        <a href={resolve(tab.href)}>{tab.title}</a>
       </span>
     {/each}
   </nav>
