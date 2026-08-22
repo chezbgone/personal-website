@@ -5,6 +5,12 @@ updates:
     schedule:
       interval: monthly
     open-pull-requests-limit: 3
+    # TypeScript 7 is used via the @typescript/native alias, alongside a
+    # TypeScript 6 install that svelte-check still requires. Bumping the
+    # `typescript` entry itself to 7 breaks `npm run check`.
+    ignore:
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
     groups:
       npm-security:
         applies-to: security-updates
