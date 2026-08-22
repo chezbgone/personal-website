@@ -38,6 +38,11 @@
     align-items: baseline;
   }
 
+  nav {
+    display: flex;
+    gap: 0.75em;
+  }
+
   .masthead {
     padding-left: var(--masthead-hbuffer);
     background-image: url("/assets/masthead.jpg");
